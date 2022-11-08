@@ -6,6 +6,10 @@ import os
 def create_app():
     app = Flask(__name__)
 
+    @app.errorhandler(404)
+    def not_found(err):
+        return {'error': 'Not Found'}, 404
+
     app.config ['JSON_SORT_KEYS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
@@ -13,9 +17,5 @@ def create_app():
     ma.init_app(app)
 
     app.register_blueprint(cards_bp)
-
-    @app.route('/')
-    def index():
-        return 'Hello'
-    
+ 
     return app
