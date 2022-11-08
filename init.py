@@ -6,4 +6,4 @@ from flask_jwt_extended import JWTManager
 db = SQLAlchemy()
 ma = Marshmallow()
 bcrypt = Bcrypt()
-jwt = JWTManager(app)
+jwt = JWTManager()
