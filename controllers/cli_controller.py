@@ -35,7 +35,7 @@ def seed_db():
 
     db.session.add_all(users)
     db.session.commit()
-    
+
     cards = [
         Card(
             title = 'Start the project',
@@ -43,7 +43,7 @@ def seed_db():
             status = 'To Do',
             priority = 'High',
             date = date.today(),
-            user_id = users[0].id
+            user = users[0]
         ),
         Card(
         title = "SQLAlchemy",
@@ -51,7 +51,7 @@ def seed_db():
         status = "Ongoing",
         priority = "High",
         date = date.today(),
-        user = users[0]
+        user_id = users[0].id
         ),
         Card(
             title = "ORM Queries",
