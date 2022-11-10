@@ -1,9 +1,10 @@
 from flask import Blueprint
 from init import db, bcrypt
-from datetime import date 
+from datetime import date
 from models.card import Card
 from models.user import User
 from models.comment import Comment
+
 
 db_commands = Blueprint('db', __name__)
 
@@ -39,19 +40,19 @@ def seed_db():
     cards = [
         Card(
             title = 'Start the project',
-            description = 'Stage 1 - Creating the database',
+            description = 'Stage 1 - Create the database',
             status = 'To Do',
             priority = 'High',
             date = date.today(),
             user = users[0]
         ),
         Card(
-        title = "SQLAlchemy",
-        description = "Stage 2 - Integrate ORM",
-        status = "Ongoing",
-        priority = "High",
-        date = date.today(),
-        user_id = users[0].id
+            title = "SQLAlchemy",
+            description = "Stage 2 - Integrate ORM",
+            status = "Ongoing",
+            priority = "High",
+            date = date.today(),
+            user = users[0]
         ),
         Card(
             title = "ORM Queries",
@@ -70,11 +71,10 @@ def seed_db():
             user = users[1]
         )
     ]
-        
+
     db.session.add_all(cards)
     db.session.commit()
 
-  
     comments = [
         Comment(
             message = 'Comment 1',
@@ -90,8 +90,8 @@ def seed_db():
         ),
         Comment(
             message = 'Comment 3',
-            user = users[1],
-            card = cards[0],
+            user = users[0],
+            card = cards[2],
             date = date.today()
         )
     ]

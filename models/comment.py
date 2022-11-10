@@ -6,7 +6,7 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.Text)
-    date = db.Column(db.Date) # Date Created
+    date = db.Column(db.Date) # Date created
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)

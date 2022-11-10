@@ -7,7 +7,7 @@ class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     description = db.Column(db.Text)
-    date = db.Column(db.Date)
+    date = db.Column(db.Date) # Date created
     status = db.Column(db.String)
     priority = db.Column(db.String)
 
@@ -18,8 +18,9 @@ class Card(db.Model):
 
 
 class CardSchema(ma.Schema):
-    user = fields.Nested('UserSchema', only=['name','email'])
+    user = fields.Nested('UserSchema', only=['name', 'email'])
     comments = fields.List(fields.Nested('CommentSchema', exclude=['card']))
+
     class Meta:
         fields = ('id', 'title', 'description', 'status', 'priority', 'date', 'user', 'comments')
         ordered = True
