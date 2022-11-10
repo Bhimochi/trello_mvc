@@ -7,6 +7,7 @@ from models.user import User
 
 db_commands = Blueprint('db', __name__)
 
+
 @db_commands.cli.command('create')
 def create_db():
     db.create_all()
@@ -32,34 +33,41 @@ def seed_db():
         )
     ]
 
+    db.session.add_all(users)
+    db.session.commit()
+    
     cards = [
         Card(
             title = 'Start the project',
             description = 'Stage 1 - Creating the database',
             status = 'To Do',
             priority = 'High',
-            date = date.today()
+            date = date.today(),
+            user_id = users[0].id
         ),
         Card(
         title = "SQLAlchemy",
         description = "Stage 2 - Integrate ORM",
         status = "Ongoing",
         priority = "High",
-        date = date.today()
+        date = date.today(),
+        user = users[0]
         ),
         Card(
             title = "ORM Queries",
             description = "Stage 3 - Implement several queries",
             status = "Ongoing",
             priority = "Medium",
-            date = date.today()
+            date = date.today(),
+            user = users[1]
         ),
         Card(
             title = "Marshmallow",
             description = "Stage 4 - Implement Marshmallow to jsonify models",
             status = "Ongoing",
             priority = "Medium",
-            date = date.today()
+            date = date.today(),
+            user = users[1]
         )
     ]
         
